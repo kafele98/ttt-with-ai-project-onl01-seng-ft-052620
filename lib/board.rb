@@ -17,8 +17,8 @@ class Board
     puts " #{cells[6]} | #{cells[7]} | #{cells[8]} "
   end
 
-  def position(user_input)
-    @cells[user_input.to_i - 1]
+  def position(input)
+    @cells[input.to_i - 1]
   end
 
   def full?
@@ -29,16 +29,16 @@ class Board
     @cells.select { |cell| cell != " "}.count
   end
 
-  def taken?(user_input)
-    position(user_input) != " "
+  def taken?(input)
+        !(position(input) == " " || position(input) == "")
   end
 
-  def valid_move?(user_input)
-    user_input.to_i.between?(1,9) && !(taken?(user_input))
+  def valid_move?(input)
+      index = input.to_i
+       index.between?(1, 9) && !taken?(input)
   end
 
-  def update(user_input, player)
-    @cells[user_input.to_i-1] = player.token
+   def update(input, player)
+       cells[input.to_i - 1] = player.token
   end
-
 end
